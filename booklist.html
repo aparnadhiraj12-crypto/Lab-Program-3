@@ -58,10 +58,24 @@
       transition: background 0.15s, color 0.15s;
     }
     .swatch {
-      width: 8px;
-      height: 26px;
-      border-radius: 3px;
+      width: 24px;
+      height: 32px;
+      border-radius: 4px;
       flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .swatch img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .swatch .fallback {
+      width: 100%; height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
     }
     li a:hover { background: rgba(255,255,255,0.55); }
     li a.active {
@@ -97,6 +111,10 @@
       var swatch = document.createElement('span');
       swatch.className = 'swatch';
       swatch.style.background = book.color;
+      swatch.innerHTML =
+        '<img src="https://covers.openlibrary.org/b/isbn/' + book.isbn + '-S.jpg" alt="" ' +
+          'onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">' +
+        '<span class="fallback">' + book.emoji + '</span>';
 
       var label = document.createElement('span');
       label.textContent = book.title;

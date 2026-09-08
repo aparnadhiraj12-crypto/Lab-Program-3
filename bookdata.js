@@ -7,6 +7,12 @@ var books = [
     genre: "Fiction",
     pages: 281,
     color: "#8e44ad",
+    isbn: "9780061120084",
+    emoji: "\u2696\ufe0f",
+    publisher: "J. B. Lippincott & Co.",
+    language: "English",
+    rating: 4.6,
+    awards: ["Pulitzer Prize, 1961"],
     description: "A story of racial injustice and childhood innocence in the American South, told through the eyes of young Scout Finch."
   },
   {
@@ -17,6 +23,12 @@ var books = [
     genre: "Dystopian",
     pages: 328,
     color: "#c0392b",
+    isbn: "9780451524935",
+    emoji: "\ud83d\udc41\ufe0f",
+    publisher: "Secker & Warburg",
+    language: "English",
+    rating: 4.5,
+    awards: ["Prometheus Hall of Fame Award, 1984"],
     description: "A chilling vision of a totalitarian future where the state controls truth, thought, and history itself."
   },
   {
@@ -27,6 +39,12 @@ var books = [
     genre: "Romance",
     pages: 279,
     color: "#2980b9",
+    isbn: "9780141439518",
+    emoji: "\ud83d\udc8c",
+    publisher: "T. Egerton, Whitehall",
+    language: "English",
+    rating: 4.4,
+    awards: [],
     description: "A witty exploration of manners, marriage, and social class centered on the spirited Elizabeth Bennet."
   },
   {
@@ -37,6 +55,12 @@ var books = [
     genre: "Fantasy",
     pages: 310,
     color: "#27ae60",
+    isbn: "9780547928227",
+    emoji: "\ud83c\udfde\ufe0f",
+    publisher: "George Allen & Unwin",
+    language: "English",
+    rating: 4.7,
+    awards: ["New York Herald Tribune Prize, 1938"],
     description: "Bilbo Baggins is swept into an unexpected adventure across Middle-earth in this beloved fantasy classic."
   },
   {
@@ -47,6 +71,12 @@ var books = [
     genre: "Fiction",
     pages: 180,
     color: "#f39c12",
+    isbn: "9780743273565",
+    emoji: "\ud83c\udf7e",
+    publisher: "Charles Scribner's Sons",
+    language: "English",
+    rating: 4.2,
+    awards: [],
     description: "A tale of wealth, obsession, and the American Dream set against the glittering backdrop of the Jazz Age."
   },
   {
@@ -57,6 +87,12 @@ var books = [
     genre: "Science Fiction",
     pages: 412,
     color: "#d35400",
+    isbn: "9780441172719",
+    emoji: "\ud83c\udfdc\ufe0f",
+    publisher: "Chilton Books",
+    language: "English",
+    rating: 4.8,
+    awards: ["Hugo Award, 1966", "Nebula Award, 1965"],
     description: "An epic saga of politics, religion, and ecology on the desert planet Arrakis, home to the most valuable resource in the universe."
   }
 ];

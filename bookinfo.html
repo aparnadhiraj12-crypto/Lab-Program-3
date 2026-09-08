@@ -13,27 +13,157 @@
       font-family: 'Inter', sans-serif;
       background: #f6ece9;
       color: #221f1b;
-      padding: 50px 46px;
+      padding: 44px 40px;
     }
-    .welcome {
-      max-width: 420px;
-      margin: 110px auto 0;
+    .landing { max-width: 760px; margin: 0 auto; }
+
+    .landing-hero {
       text-align: center;
-      color: #8b8479;
+      padding: 20px 0 40px;
     }
-    .welcome .icon { font-size: 30px; margin-bottom: 14px; }
-    .welcome h1 {
+    .landing-hero .eyebrow {
+      font-size: 13px;
+      color: #a8493f;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .landing-hero h1 {
       font-family: 'Fraunces', serif;
       font-weight: 500;
-      font-size: 25px;
+      font-size: 36px;
+      margin: 0 0 12px;
+    }
+    .landing-hero p {
+      color: #8b8479;
+      font-size: 15px;
+      max-width: 440px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin: 28px 0 44px;
+    }
+    .stat {
+      background: #fdfbf7;
+      border-radius: 16px;
+      padding: 16px 26px;
+      text-align: center;
+      box-shadow: 0 14px 26px -18px rgba(30,20,10,0.18);
+    }
+    .stat .num {
+      font-family: 'Fraunces', serif;
+      font-size: 24px;
+      font-weight: 600;
       color: #221f1b;
-      margin: 0 0 8px;
+    }
+    .stat .label {
+      font-size: 11.5px;
+      color: #8b8479;
+      margin-top: 2px;
+    }
+
+    .browse-heading {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 18px;
+      margin: 0 0 18px;
+    }
+
+    .shelf-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .shelf-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #fdfbf7;
+      border-radius: 14px;
+      padding: 12px;
+      text-decoration: none;
+      color: #221f1b;
+      box-shadow: 0 12px 22px -18px rgba(30,20,10,0.16);
+      transition: transform 0.15s;
+    }
+    .shelf-card:hover { transform: translateY(-3px); }
+    .shelf-card .spine {
+      width: 34px;
+      height: 50px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .shelf-card .spine img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .shelf-card .spine .fallback {
+      width: 100%; height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    .shelf-card .card-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .shelf-card .card-author {
+      font-size: 11.5px;
+      color: #8b8479;
+      margin-top: 2px;
     }
 
     .layout { max-width: 620px; margin: 0 auto; }
 
+    .home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #8b8479;
+      text-decoration: none;
+      margin-bottom: 22px;
+    }
+    .home-btn:hover { color: #a8493f; }
+
     .hero { display: flex; justify-content: center; margin-bottom: 30px; }
-    .hero svg { filter: drop-shadow(0 18px 26px rgba(30,20,10,0.22)); }
+    .cover-large {
+      width: 172px;
+      height: 254px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 4px 10px 26px rgba(20,15,5,0.28);
+    }
+    .cover-large img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .cover-large .fallback {
+      width: 100%; height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      color: #fff;
+      font-family: 'Fraunces', serif;
+      font-size: 14px;
+      text-align: center;
+      padding: 16px;
+    }
+    .cover-large .fallback .emoji { font-size: 34px; }
 
     h1.title {
       font-family: 'Fraunces', serif;
@@ -76,14 +206,50 @@
       color: #4a4237;
       box-shadow: 0 16px 30px -18px rgba(30,20,10,0.16);
     }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .detail-box {
+      background: #fdfbf7;
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: 0 12px 22px -18px rgba(30,20,10,0.14);
+    }
+    .detail-box .dt-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #a8493f;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .detail-box .dt-value {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #221f1b;
+    }
+    .stars { color: #d8685f; letter-spacing: 1px; }
+    .stars .num { color: #8b8479; font-weight: 500; font-size: 12.5px; margin-left: 4px; }
+
+    .awards-box { grid-column: 1 / -1; }
+    .award-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .award-chip {
+      font-size: 12px;
+      font-weight: 600;
+      color: #6b5636;
+      background: #f1e4d1;
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+    .no-awards { font-size: 13px; color: #8b8479; font-style: italic; }
   </style>
 </head>
 <body>
-  <div id="content" class="welcome">
-    <div class="icon">&#128214;</div>
-    <h1>Welcome to the Book Library</h1>
-    <p>Select a book from the list on the left to see its details here.</p>
-  </div>
+  <div id="content"></div>
 
   <script src="bookdata.js"></script>
   <script>
@@ -95,19 +261,62 @@
     var book = books.find(function (b) { return String(b.id) === id; });
     var contentEl = document.getElementById('content');
 
-    function openBookSVG(color) {
-      return '<svg width="230" height="150" viewBox="0 0 230 150">' +
-        '<path d="M8 8 L115 20 L115 138 L8 126 Z" fill="#faf6ef" stroke="#e3dccb"/>' +
-        '<path d="M222 8 L115 20 L115 138 L222 126 Z" fill="#faf6ef" stroke="#e3dccb"/>' +
-        '<rect x="120" y="24" width="98" height="106" fill="' + color + '" rx="2"/>' +
-        '<line x1="115" y1="20" x2="115" y2="138" stroke="#d8cfb8" stroke-width="2"/>' +
-        '</svg>';
+    function renderLanding() {
+      contentEl.className = 'landing';
+      var totalPages = books.reduce(function (sum, b) { return sum + b.pages; }, 0);
+      var genres = new Set(books.map(function (b) { return b.genre; })).size;
+
+      var cards = books.map(function (b) {
+        return '<a class="shelf-card" href="bookinfo.html?id=' + b.id + '">' +
+          '<div class="spine" style="background:' + b.color + '">' +
+            '<img src="https://covers.openlibrary.org/b/isbn/' + b.isbn + '-M.jpg" alt="" ' +
+              'onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">' +
+            '<div class="fallback">' + b.emoji + '</div>' +
+          '</div>' +
+          '<div><div class="card-title">' + b.title + '</div>' +
+          '<div class="card-author">' + b.author + '</div></div>' +
+          '</a>';
+      }).join('');
+
+      contentEl.innerHTML =
+        '<div class="landing-hero">' +
+          '<div class="eyebrow">ONLINE LIBRARY</div>' +
+          '<h1>Welcome to the Book Library</h1>' +
+          '<p>Browse the collection below, or pick a title from the list on the left to read its full details.</p>' +
+        '</div>' +
+        '<div class="stats">' +
+          '<div class="stat"><div class="num">' + books.length + '</div><div class="label">Books</div></div>' +
+          '<div class="stat"><div class="num">' + genres + '</div><div class="label">Genres</div></div>' +
+          '<div class="stat"><div class="num">' + totalPages.toLocaleString() + '</div><div class="label">Total pages</div></div>' +
+        '</div>' +
+        '<h2 class="browse-heading">Browse the collection</h2>' +
+        '<div class="shelf-grid">' + cards + '</div>';
+    }
+
+    function coverHTML(b) {
+      return '<div class="cover-large" style="background:' + b.color + '">' +
+        '<img src="https://covers.openlibrary.org/b/isbn/' + b.isbn + '-L.jpg" alt="' + b.title + ' cover" ' +
+          'onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">' +
+        '<div class="fallback"><div class="emoji">' + b.emoji + '</div>' + b.title + '</div>' +
+      '</div>';
+    }
+
+    function starRating(rating) {
+      var full = Math.round(rating);
+      var stars = '';
+      for (var i = 0; i < 5; i++) stars += i < full ? '\u2605' : '\u2606';
+      return '<span class="stars">' + stars + '<span class="num">' + rating.toFixed(1) + ' / 5</span></span>';
     }
 
     if (book) {
       contentEl.className = 'layout';
+      var awardsHTML = book.awards.length
+        ? '<div class="award-list">' + book.awards.map(function (a) { return '<span class="award-chip">&#127942; ' + a + '</span>'; }).join('') + '</div>'
+        : '<div class="no-awards">No awards on record.</div>';
+
       contentEl.innerHTML =
-        '<div class="hero">' + openBookSVG(book.color) + '</div>' +
+        '<a class="home-btn" href="bookinfo.html">&#8592; Back to library</a>' +
+        '<div class="hero">' + coverHTML(book) + '</div>' +
         '<h1 class="title">' + book.title + '</h1>' +
         '<div class="author">by ' + book.author + '</div>' +
         '<div class="meta">' +
@@ -115,7 +324,16 @@
           '<span>&#128218; ' + book.genre + '</span>' +
           '<span>&#128196; ' + book.pages + ' pages</span>' +
         '</div>' +
-        '<div class="desc">' + book.description + '</div>';
+        '<div class="desc">' + book.description + '</div>' +
+        '<div class="details-grid">' +
+          '<div class="detail-box"><div class="dt-label">Rating</div><div class="dt-value">' + starRating(book.rating) + '</div></div>' +
+          '<div class="detail-box"><div class="dt-label">Language</div><div class="dt-value">' + book.language + '</div></div>' +
+          '<div class="detail-box"><div class="dt-label">Publisher</div><div class="dt-value">' + book.publisher + '</div></div>' +
+          '<div class="detail-box"><div class="dt-label">ISBN</div><div class="dt-value">' + book.isbn + '</div></div>' +
+          '<div class="detail-box awards-box"><div class="dt-label">Awards</div>' + awardsHTML + '</div>' +
+        '</div>';
+    } else {
+      renderLanding();
     }
   </script>
 </body>
