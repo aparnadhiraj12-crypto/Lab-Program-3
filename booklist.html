@@ -3,57 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <title>Book List</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Georgia, 'Times New Roman', serif;
-      background: #2c3e50;
-      color: #ecf0f1;
+      font-family: 'Inter', sans-serif;
+      background: #f1ece1;
+      color: #221f1b;
     }
-    h2 {
-      text-align: center;
-      padding: 16px 10px 10px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 28px 22px 22px;
+    }
+    .brand-mark {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: #f2d9d6;
+      display: flex; align-items: center; justify-content: center;
+      color: #d8685f;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+    .brand h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 19px;
       margin: 0;
-      border-bottom: 2px solid #1a252f;
-      font-size: 18px;
-      letter-spacing: 1px;
+    }
+    .brand p {
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: #8b8479;
     }
     ul {
       list-style: none;
       margin: 0;
-      padding: 0;
+      padding: 8px 14px;
     }
+    li { margin-bottom: 4px; }
     li a {
-      display: block;
-      padding: 12px 16px;
-      color: #ecf0f1;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 13px 14px;
+      color: #4a4237;
       text-decoration: none;
-      border-bottom: 1px solid #34495e;
-      font-size: 15px;
-      transition: background 0.15s;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 12px;
+      transition: background 0.15s, color 0.15s;
     }
-    li a:hover, li a:focus {
-      background: #34495e;
+    .swatch {
+      width: 8px;
+      height: 26px;
+      border-radius: 3px;
+      flex-shrink: 0;
     }
+    li a:hover { background: rgba(255,255,255,0.55); }
     li a.active {
-      background: #16a085;
-      font-weight: bold;
+      background: #d8685f;
+      color: #fff;
+      font-weight: 600;
     }
+    li a.active .swatch { background: rgba(255,255,255,0.7) !important; }
   </style>
 </head>
 <body>
-  <h2>📚 Book Titles</h2>
+  <div class="brand">
+    <div class="brand-mark">&#9679;</div>
+    <div>
+      <h1>Book Titles</h1>
+      <p>Select a title to read more</p>
+    </div>
+  </div>
   <ul id="bookListItems"></ul>
 
   <script src="bookdata.js"></script>
   <script>
     var listEl = document.getElementById('bookListItems');
+    var currentId = new URLSearchParams(window.location.search).get('active');
+
     books.forEach(function (book) {
       var li = document.createElement('li');
       var a = document.createElement('a');
       a.href = 'bookinfo.html?id=' + book.id;
       a.target = 'infoFrame';
-      a.textContent = book.title;
+      if (String(book.id) === currentId) a.className = 'active';
+
+      var swatch = document.createElement('span');
+      swatch.className = 'swatch';
+      swatch.style.background = book.color;
+
+      var label = document.createElement('span');
+      label.textContent = book.title;
+
+      a.appendChild(swatch);
+      a.appendChild(label);
+      a.addEventListener('click', function () {
+        document.querySelectorAll('a').forEach(function (el) { el.classList.remove('active'); });
+        a.classList.add('active');
+      });
+
       li.appendChild(a);
       listEl.appendChild(li);
     });
