@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alcove — My Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --page-bg: #e9e8ef;
+    --card-bg: #fdfbf7;
+    --sidebar-bg: #fdfbf7;
+    --ink: #2c2620;
+    --ink-soft: #8a8177;
+    --line: #ece7dd;
+    --tan: #f1e4d1;
+    --tan-ink: #6b5636;
+    --accent: #a97c3f;
+    --shelf: #ddd0b8;
+    --shelf-shadow: rgba(90, 70, 40, 0.18);
+    --radius-lg: 28px;
+    --radius-md: 16px;
+    --radius-sm: 10px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--page-bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    width: 100%;
+    max-width: 1180px;
+    min-height: 640px;
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 30px 60px -25px rgba(40, 30, 15, 0.25);
+    overflow: hidden;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar {
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    padding: 28px 20px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 8px 28px;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--tan);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+    font-size: 16px;
+  }
+  .brand-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 19px;
+    letter-spacing: 0.2px;
+  }
+
+  nav.primary { display: flex; flex-direction: column; gap: 4px; }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    border-radius: var(--radius-sm);
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: none;
+    text-align: left;
+    width: 100%;
+  }
+  .nav-item .icon { width: 18px; text-align: center; font-size: 15px; }
+  .nav-item:hover { color: var(--ink); }
+  .nav-item.active {
+    background: var(--tan);
+    color: var(--tan-ink);
+  }
+
+  .sidebar-spacer { flex: 1; }
+
+  .continue-card {
+    background: #f4f0e8;
+    border-radius: var(--radius-md);
+    padding: 14px;
+    margin-bottom: 14px;
+  }
+  .continue-label {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .continue-cover {
+    width: 100%;
+    height: 78px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #3b4a63, #232c3d);
+    margin-bottom: 10px;
+  }
+  .progress-track {
+    height: 4px;
+    border-radius: 4px;
+    background: #e3ddcf;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 62%;
+    background: var(--accent);
+  }
+
+  .user-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+  }
+  .avatar {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d9a066, #a97c3f);
+  }
+  .user-row span { font-size: 13.5px; font-weight: 500; flex: 1; }
+  .user-row .chev { color: var(--ink-soft); font-size: 12px; }
+
+  /* ---------- Main ---------- */
+  .main {
+    padding: 30px 40px 40px;
+    overflow-y: auto;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 34px;
+  }
+  .tabs { display: flex; gap: 6px; }
+  .tab {
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 13.5px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    background: none;
+    color: var(--ink-soft);
+  }
+  .tab.active { background: var(--ink); color: #fff; }
+
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f3f0ea;
+    border-radius: 999px;
+    padding: 9px 16px;
+    color: var(--ink-soft);
+    font-size: 13.5px;
+    min-width: 220px;
+  }
+  .search svg { flex-shrink: 0; }
+
+  .shelf-section { margin-bottom: 38px; }
+  .shelf-section:last-child { margin-bottom: 0; }
+
+  .shelf-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+  .shelf-heading h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 0;
+  }
+  .shelf-heading a {
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .shelf-heading a:hover { color: var(--accent); }
+
+  .shelf {
+    position: relative;
+    display: flex;
+    gap: 22px;
+    padding-bottom: 22px;
+  }
+  .shelf::after {
+    content: "";
+    position: absolute;
+    left: -4px; right: -4px;
+    bottom: 10px;
+    height: 10px;
+    background: var(--shelf);
+    border-radius: 3px;
+    box-shadow: 0 8px 14px -4px var(--shelf-shadow);
+  }
+
+  .book {
+    position: relative;
+    width: 96px;
+    height: 138px;
+    border-radius: 4px 6px 6px 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px 9px;
+    color: #fff;
+    box-shadow: 3px 4px 10px rgba(20, 15, 5, 0.18);
+    flex-shrink: 0;
+    transform: translateY(0);
+    transition: transform 0.15s ease;
+  }
+  .book:hover { transform: translateY(-4px); }
+  .book::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 4px 0 0 4px;
+  }
+  .book .title {
+    font-family: 'Fraunces', serif;
+    font-size: 12.5px;
+    line-height: 1.25;
+    font-weight: 500;
+  }
+  .book .author {
+    font-size: 9.5px;
+    opacity: 0.75;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 760px) {
+    .app { grid-template-columns: 1fr; }
+    .sidebar { flex-direction: row; flex-wrap: wrap; }
+    .continue-card, .sidebar-spacer { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">◐</div>
+      <div class="brand-name">Alcove</div>
+    </div>
+
+    <nav class="primary">
+      <button class="nav-item"><span class="icon">⌂</span> Home</button>
+      <button class="nav-item active"><span class="icon">▤</span> My library</button>
+      <button class="nav-item"><span class="icon">◇</span> Shop</button>
+      <button class="nav-item"><span class="icon">✉</span> News</button>
+    </nav>
+
+    <div class="sidebar-spacer"></div>
+
+    <div class="continue-card">
+      <div class="continue-label">Continue reading</div>
+      <div class="continue-cover"></div>
+      <div class="progress-track"><div class="progress-fill"></div></div>
+    </div>
+
+    <div class="user-row">
+      <div class="avatar"></div>
+      <span>Stephan</span>
+      <span class="chev">›</span>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="topbar">
+      <div class="tabs">
+        <button class="tab active">Shelves</button>
+        <button class="tab">All Books</button>
+      </div>
+      <div class="search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search in My library
+      </div>
+    </div>
+
+    <section class="shelf-section">
+      <div class="shelf-heading"><h2>Currently reading</h2></div>
+      <div class="shelf" id="currently-reading"></div>
+    </section>
+
+    <section class="shelf-section">
+      <div class="shelf-heading"><h2>Next up</h2><a href="#">Full shelf →</a></div>
+      <div class="shelf" id="next-up"></div>
+    </section>
+
+    <section class="shelf-section">
+      <div class="shelf-heading"><h2>Finished</h2><a href="#">Full shelf →</a></div>
+      <div class="shelf" id="finished"></div>
+    </section>
+  </main>
+
+</div>
+
+<script>
+  const data = {
+    "currently-reading": [
+      { title: "Windrose", author: "M. Elden", bg: "linear-gradient(160deg,#5b7a9d,#2c3e50)" },
+      { title: "Systems", author: "J. Park", bg: "linear-gradient(160deg,#6b8f71,#33453a)" },
+      { title: "Strategic Writing for UX", author: "T. Nowak", bg: "linear-gradient(160deg,#e8b04b,#c98a2e)" },
+    ],
+    "next-up": [
+      { title: "Field Guide", author: "R. Voss", bg: "linear-gradient(160deg,#8ea0ad,#5c6b76)" },
+      { title: "The Lord of the Rings", author: "J.R.R. Tolkien", bg: "linear-gradient(160deg,#7a4b3a,#4a2c22)" },
+      { title: "Birds of the World", author: "A. Finch", bg: "linear-gradient(160deg,#c9743f,#96502a)" },
+      { title: "Art of Tea", author: "S. Mori", bg: "linear-gradient(160deg,#87a06a,#54683c)" },
+      { title: "1984", author: "G. Orwell", bg: "linear-gradient(160deg,#d7c65b,#a9962f)" },
+      { title: "The Design of Everyday Things", author: "D. Norman", bg: "linear-gradient(160deg,#2a2a2a,#101010)" },
+    ],
+    "finished": [
+      { title: "Steve Jobs", author: "W. Isaacson", bg: "linear-gradient(160deg,#3a3a3a,#111)" },
+      { title: "Philosophy Notes", author: "K. Adler", bg: "linear-gradient(160deg,#c95b5b,#8f3a3a)" },
+      { title: "One Year Wiser", author: "L. Hart", bg: "linear-gradient(160deg,#3f5c78,#1f3040)" },
+      { title: "104 Amazing Facts: Switzerland", author: "Ed. Staff", bg: "linear-gradient(160deg,#e6e6e6,#b8b8b8)" },
+      { title: "The Alps", author: "N. Graf", bg: "linear-gradient(160deg,#8a9a7d,#5a6b4e)" },
+      { title: "Logo Design Love", author: "D. Airey", bg: "linear-gradient(160deg,#1c1c1c,#000)" },
+    ]
+  };
+
+  Object.entries(data).forEach(([id, books]) => {
+    const shelf = document.getElementById(id);
+    books.forEach(b => {
+      const el = document.createElement('div');
+      el.className = 'book';
+      el.style.background = b.bg;
+      el.innerHTML = `<div class="title">${b.title}</div><div class="author">${b.author}</div>`;
+      shelf.appendChild(el);
+    });
+  });
+
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.nav-item').forEach(t => t.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>

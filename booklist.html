@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Book List</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #2c3e50;
+      color: #ecf0f1;
+    }
+    h2 {
+      text-align: center;
+      padding: 16px 10px 10px;
+      margin: 0;
+      border-bottom: 2px solid #1a252f;
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    li a {
+      display: block;
+      padding: 12px 16px;
+      color: #ecf0f1;
+      text-decoration: none;
+      border-bottom: 1px solid #34495e;
+      font-size: 15px;
+      transition: background 0.15s;
+    }
+    li a:hover, li a:focus {
+      background: #34495e;
+    }
+    li a.active {
+      background: #16a085;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>📚 Book Titles</h2>
+  <ul id="bookListItems"></ul>
+
+  <script src="bookdata.js"></script>
+  <script>
+    var listEl = document.getElementById('bookListItems');
+    books.forEach(function (book) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = 'bookinfo.html?id=' + book.id;
+      a.target = 'infoFrame';
+      a.textContent = book.title;
+      li.appendChild(a);
+      listEl.appendChild(li);
+    });
+  </script>
+</body>
+</html>
